@@ -1,7 +1,9 @@
 import { Fragment } from 'react'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { ConnectKitButton, } from "connectkit";
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { Menu, Transition } from '@headlessui/react'
+  import { ConnectButton, useConnectModal } from '@web3modal/react'
 
 const user = {
   name: 'Tom Cook',
@@ -16,6 +18,28 @@ const userNavigation = [
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
+
+}
+
+function ProfileHeaderWeb3Module(){
+
+  // const { isOpen, open, close } = useConnectModal()
+
+  return (
+    <>
+      <ConnectButton />
+      {/* or
+      <button onClick={open}>Open Modal</button> */}
+    </>
+  )
+}
+
+function ProfileHeaderConnectKit(){
+  return(
+  <div>
+    <ConnectKitButton />
+    </div>
+    )
 }
 
 function ProfileHeader() {
@@ -79,4 +103,4 @@ Disconnect
   return <button onClick={() => connect()}>Connect Wallet</button>
 }
 
-export default ProfileHeader;
+export default ProfileHeaderWeb3Module;
