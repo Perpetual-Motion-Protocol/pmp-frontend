@@ -1,9 +1,30 @@
 import { WagmiConfig, createClient } from 'wagmi'
 import { getDefaultProvider } from 'ethers'
 
-import WagmiTest from './components/WagmiTest'
+import {
+  HashRouter, Route, Routes
+} from "react-router-dom";
+
+import PageFrame from './components/PageFrame'
 import './App.css'
 
+import Root from "./routes/root"
+import Donate from "./routes/donate"
+
+// const router = createHashRouter([
+//   {
+//     path: "/",
+//     element: <Root />,
+//     // loader: rootLoader,
+//     children: [
+//       {
+//         path: "donate",
+//         element: <Donate />,
+//         // loader: donateLoader,
+//       },
+//     ],
+//   },
+// ]);
 
 const client = createClient({
   autoConnect: true,
@@ -14,9 +35,16 @@ function App() {
 
   return (
     <WagmiConfig client={client}>
-      <div className="App">
-        <WagmiTest />
-      </div>
+      <HashRouter basename="/">
+
+      <PageFrame>
+        <Routes>
+        <Route path="/" element={<Root />} />
+        <Route path="donate" element={<Donate />} />
+
+        </Routes>
+      </PageFrame>
+      </HashRouter>
     </WagmiConfig>
   )
 }

@@ -1,0 +1,39 @@
+name: Deploy to Web3Storage
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - run: yarn
+      - run: yarn build
+
+      - uses: web3-storage/add-to-web3@v2
+        id: web3
+        with:
+          web3_token: ${{ secrets.WEB3_STORAGE_TOKEN }}
+          path_to_add: 'dist'
+
+      # "bafkreicysg23kiwv34eg2d7qweipxwosdo2py4ldv42nbauguluen5v6am"
+      - run: echo ${{ steps.web3.outputs.cid }}
+
+      # "https://dweb.link/ipfs/bafkreicysg23kiwv34eg2d7qweipxwosdo2py4ldv42nbauguluen5v6am"
+      - run: echo ${{ steps.web3.outputs.url }}
+
+      - name: w3name publish
+        id: w3name
+        uses: pawanpaudel93/w3name-action@v0.1
+        with:
+          cid: ${{ steps.web3.outputs.cid}}
+          signing_key: ${{  secrets.SIGNING_KEY }}
+
+      - run: echo ${{ steps.w3name.outputs.url }}
