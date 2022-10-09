@@ -36,10 +36,10 @@ export default function DonationStats(props:DonationStatsProps) {
        ]], 
       [
         [
-          ethers.constants.HashZero,
+          // ethers.constants.HashZero,
           abiCoder.encode(
             ["bytes", "uint256"],
-            [ethers.utils.hashMessage(hashMessage), 100000]
+            [ethers.utils.hashMessage(hashMessage),ethers.utils.parseEther("1234")]
           ),
         ],
       ]

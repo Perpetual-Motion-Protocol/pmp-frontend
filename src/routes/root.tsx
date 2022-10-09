@@ -5,6 +5,30 @@ import HeaderImg from '../assets/images/headerSample.png'
 import HeaderImg2 from '../assets/images/headerSample2.png'
 import HeaderImg3 from '../assets/images/DSCN8452.jpg'
 
+import logo1 from '../assets/brandLogos/1.jpeg';
+import logo2 from '../assets/brandLogos/2.png';
+import logo3 from '../assets/brandLogos/3.png';
+import logo4 from '../assets/brandLogos/4.png';
+import logo5 from '../assets/brandLogos/5.png';
+import logo6 from '../assets/brandLogos/6.jpeg';
+import logo7 from '../assets/brandLogos/7.png';
+import logo8 from '../assets/brandLogos/8.png';
+import logo9 from '../assets/brandLogos/9.png';
+import logo10 from '../assets/brandLogos/10.png';
+
+const logos = [
+  logo1,
+  logo2,
+  logo3,
+  logo4,
+  logo5,
+  logo6,
+  logo7,
+  logo8,
+  logo9,
+  logo10,
+]
+
 const headerImages = [HeaderImg, HeaderImg2, HeaderImg3];
 
 const features = [
@@ -164,37 +188,16 @@ function Root() {
         <p className="text-left text-lg font-semibold text-gray-600">
           Built on
         </p>
-        <div className="mt-6 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-8">
+        <div className="mt-6 grid grid-cols-2 gap-0.5 md:grid-cols-5 lg:mt-8">
+          { logos.map((logo)=>{return(
           <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
             <img
-              className="max-h-12"
-              src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
-              alt="Workcation"
+              className="max-h-16 grayscale"
+              src={logo}
             />
           </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
-            <img className="max-h-12" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" alt="Mirage" />
-          </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
-            <img className="max-h-12" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" alt="Tuple" />
-          </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
-            <img className="max-h-12" src="https://tailwindui.com/img/logos/laravel-logo-gray-400.svg" alt="Laravel" />
-          </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
-            <img
-              className="max-h-12"
-              src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg"
-              alt="StaticKit"
-            />
-          </div>
-          <div className="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
-            <img
-              className="max-h-12"
-              src="https://tailwindui.com/img/logos/statamic-logo-gray-400.svg"
-              alt="Statamic"
-            />
-          </div>
+
+          )}) }
         </div>
       </div>
     </div>
