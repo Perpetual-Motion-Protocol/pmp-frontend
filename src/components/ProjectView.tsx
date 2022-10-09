@@ -25,7 +25,7 @@ const pmpAddresses = {"mumbai":"0x6C5c9115ef9C241Bd0efBA333B873c2E790E90A9"}
 
 function ProjectView(props:ProjectViewProps) {
 
-  const {title, details, href, twitter, sgdGoals, headerImage} = projectData["0x151a64570e4997739458455ba4ab5A535FD2E306"]
+  const {title, details, href, twitter, sgdGoals, headerImage} = projectData[props.projectAddress]
 
 
   return (
@@ -33,7 +33,7 @@ function ProjectView(props:ProjectViewProps) {
       <h1 className="font-normal text-5xl mb-6">{title}</h1>
       <div className="relative max-w-full">
         <DonationStats projectAddress={props.projectAddress} contractAddress={pmpAddresses.mumbai}/>
-        <img src={HeaderImg} />
+        <img src={headerImages[headerImage]} />
       </div>
       <div className="flex flex-row gap-4">
 

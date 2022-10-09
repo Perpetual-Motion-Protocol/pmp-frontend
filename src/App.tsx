@@ -37,7 +37,7 @@ function App() {
       <PageFrame>
         <Routes>
           <Route path="/" element={<Root />} />
-          <Route path="donate" element={<Donate />} />
+          <Route path="/donate/:projectAddress" element={<Donate />} />
 
         </Routes>
       </PageFrame>

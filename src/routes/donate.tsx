@@ -1,11 +1,12 @@
 import ProjectView from "../components/ProjectView"
-
+import { useParams } from 'react-router-dom';
 
 function Donate() {
+  let { projectAddress } = useParams();
 
   return (
     <div>
-    <ProjectView projectAddress="0x151a64570e4997739458455ba4ab5A535FD2E306" />
+    <ProjectView projectAddress={projectAddress} />
     </div>
   )
 }

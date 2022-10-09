@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 const navigation = [
   // { name: 'About', href: '/', current: true },
-  { name: 'Donate', href: '/donate', current: false },
+  { name: 'Donate', href: '/donate/0x151a64570e4997739458455ba4ab5A535FD2E306', current: false },
 ]
 
 function classNames(...classes) {
