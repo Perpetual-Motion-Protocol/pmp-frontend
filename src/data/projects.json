@@ -1,0 +1,34 @@
+{
+  "0x151a64570e4997739458455ba4ab5A535FD2E306":{
+    "title": "KOKO DAO",
+    "short": "KOKO DAO works with local Colombian communities to create viable economic models as an alternative to small scale deforestation.",
+    "details": "KOKO DAO works with local Colombian communities to create viable economic models as an alternative to small scale deforestation.\nWhy Focus on Small Scale Forests?\nRural communities and small land owners have neither the resources nor sufficient amounts of land to receive compensation from forest preservation efforts through carbon offsets. This makes deforestation the most economically compelling option for them.\nFortunately, blockchains allow us to demonstrate the proof of impact of small scale conservation projects in a transparent and trustless way. This makes it possible for us to design new ways to compensate rural communities for preserving their land.\nPilot Project\nKoko DAO's first protected forest spans across 37 acres of forest in Huila, Colombia.",
+    "href": "https://kokodao.xyz/",
+    "totalDonated": 23656.07,
+    "donors": 54,
+    "twitter": "kokodaoxyz",
+    "sgdGoals": [16,8,13],
+    "headerImage": "headerSample.png"
+  },
+  "0xanother":{
+    "title": "CoffeeCarbonCo",
+    "short": "CCC provides tools to support coffee farmers and provide pre-financing during their transition to regenerative agriculture.",
+    "details": "CCC provides a web3 ecosystem to support coffee farmers in transitioning to agroforestry by providing tools for pre-financing and tools for direct trade with climate-conscious coffee buyers. CCC quantifies future carbon savings and mints a geo-spatial NFT that keeps the track of regeneration of the farm. Farmer requests pre-financing of transition by issuing carbon credit tokens that are connected to geospatial NFTs using CCC infrastructure and fundraising directly from the climate-conscious buyers. CCC guides the farmer through transition and keeps the track of activities, verifies practices and results through dMRV. CCC provides another set of contracts for the direct coffee trade to open market access for \"regenerated coffee\".",
+    "totalDonated": 23656.07,
+    "donors": 54,
+    "twitter": "CoffeeCarbonCo",
+    "sgdGoals": [16,8,13],
+    "headerImage": "headerSample.png"
+  },
+  "0xthird":{
+    "title": "Earth Regenerators",
+    "short": "Earth Regenerators is a global network of people seeking to participate in the restoration of landscapes and cultivation of regenerative communities.",
+    "details": "This is a long explaination of the project. This is a long explaination of the project. This is a long explaination of the project. This is a long explaination of the project. This is a long explaination of the project. This is a long explaination of the project.",
+    "href": "https://www.regeneratebarichara.org/",
+    "totalDonated": 23656.07,
+    "donors": 54,
+    "twitter": "cognitivepolicy",
+    "sgdGoals": [16,8,13],
+    "headerImage": "headerSample.png"
+  }
+}

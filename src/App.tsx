@@ -36,8 +36,8 @@ function App() {
 
       <PageFrame>
         <Routes>
-        <Route path="/" element={<Root />} />
-        <Route path="donate" element={<Donate />} />
+          <Route path="/" element={<Root />} />
+          <Route path="donate" element={<Donate />} />
 
         </Routes>
       </PageFrame>
