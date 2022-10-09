@@ -147,8 +147,8 @@ export default function SetupDialog(props: SetupDialogProps) {
                   onClick={()=>{ write && write()}}
 
                                   className={classNames(
-                                    isConnected ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-slate-200',
-                                    "flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    isConnected ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-slate-200',
+                                    "flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                                   )}
                   disabled={!isConnected}
                 >
@@ -158,7 +158,7 @@ export default function SetupDialog(props: SetupDialogProps) {
                 {!!contractRead.data && <button
                   type="submit"
                   onClick={()=>{writeReset && writeReset()}}
-                  className="flex w-full justify-center rounded-md border border-transparent bg-indigo-200 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="flex w-full justify-center rounded-md border border-transparent bg-emerald-200 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                 >
                   Stop Scheme
                 </button>}

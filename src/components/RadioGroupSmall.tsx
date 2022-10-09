@@ -20,7 +20,7 @@ export default function RadioGroupSmall(props:RadioGroupProps) {
     <div className="mb-4">
       <div className="flex items-center justify-between mt-6">
         <h2 className="text-sm font-medium text-gray-900">{props.title}</h2>
-        {/* <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+        {/* <a href="#" className="text-sm font-medium text-emerald-600 hover:text-emerald-500">
           ?
         </a> */}
       </div>
@@ -34,9 +34,9 @@ export default function RadioGroupSmall(props:RadioGroupProps) {
               value={option.id}
               className={({ active, checked }) =>
                 classNames(
-                  active ? 'ring-2 ring-offset-2 ring-indigo-500' : '',
+                  active ? 'ring-2 ring-offset-2 ring-emerald-500' : '',
                   checked
-                    ? 'bg-indigo-600 border-transparent text-white hover:bg-indigo-700'
+                    ? 'bg-emerald-600 border-transparent text-white hover:bg-emerald-700'
                     : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50',
                   'border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium sm:flex-1'
                 )

@@ -3,8 +3,9 @@ import { BoltIcon, EnvelopeIcon, GlobeAltIcon, ScaleIcon } from '@heroicons/reac
 
 import HeaderImg from '../assets/images/headerSample.png'
 import HeaderImg2 from '../assets/images/headerSample2.png'
+import HeaderImg3 from '../assets/images/DSCN8452.jpg'
 
-const headerImages = [HeaderImg, HeaderImg2];
+const headerImages = [HeaderImg, HeaderImg2, HeaderImg3];
 
 const features = [
   {
@@ -51,7 +52,7 @@ const projects = [
   "address": "0x0000000000000000000000000000000000000000",
     "title": "Earth Regenerators",
     "short": "Earth Regenerators is a global network of people seeking to participate in the restoration of landscapes and cultivation of regenerative communities.",
-    "headerImage": 0
+    "headerImage": 2
   }
 ]
 
@@ -64,7 +65,7 @@ function Root() {
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
               <span className="block xl:inline">Giving made</span>{' '}
-              <span className="block text-indigo-600 xl:inline">seamless</span>
+              <span className="block text-emerald-600 xl:inline">seamless</span>
             </h1>
             <p className="mx-auto mt-3 max-w-md text-base text-gray-500 sm:text-lg md:mt-5 md:max-w-3xl md:text-xl">
               Experience a new way of giving. Round up or pick set amount to support causes from each crypto transaction.
@@ -73,7 +74,7 @@ function Root() {
               <div className="rounded-md shadow">
                 <Link
                   to="/donate/0x151a64570e4997739458455ba4ab5A535FD2E306"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-emerald-600 px-8 py-3 text-base font-medium text-white hover:bg-emerald-700 md:py-4 md:px-10 md:text-lg"
                 >
                   Start Your Giving
                 </Link>
@@ -104,16 +105,18 @@ function Root() {
               </div>
               <div className="flex flex-1 flex-col justify-between bg-white p-6">
                 <div className="flex-1">
-                  <a href={project.href} className="mt-2 block">
+                  <Link
+                  to={`/donate/${project.address}`}
+                  className="mt-2 block">
                     <p className="text-xl font-semibold text-gray-900">{project.title}</p>
                     <p className="mt-3 text-base text-gray-500">{project.short}</p>
-                  </a>
+                  </Link>
                 </div>
             <div className="mx-auto mt-5 max-w-md sm:flex sm:justify-center">
               <div className="rounded-md shadow">
                 <Link
                   to={`/donate/${project.address}`}
-                  className="flex w-full items-center justify-center rounded-md border border-2 border-indigo-600 px-8 py-3 text-indigo-600 font-medium hover:bg-slate-100 md:py-4 md:px-10"
+                  className="flex w-full items-center justify-center rounded-md border border-2 border-emerald-600 px-8 py-1 text-emerald-600 font-medium hover:bg-slate-100 px-10"
                 >
                   Donate
                 </Link>
@@ -142,7 +145,7 @@ function Root() {
             {features.map((feature) => (
               <div key={feature.name}>
                 <dt>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500 text-white">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-emerald-500 text-white">
                     <feature.icon className="h-6 w-6" aria-hidden="true" />
                   </div>
                   <p className="mt-5 text-lg font-medium leading-6 text-gray-900">{feature.name}</p>

@@ -6,8 +6,9 @@ import { TbBrandDiscord, TbBrandTwitter, TbWorld } from "react-icons/tb";
 
 import HeaderImg from '../assets/images/headerSample.png'
 import HeaderImg2 from '../assets/images/headerSample2.png'
+import HeaderImg3 from '../assets/images/DSCN8452.jpg'
 
-const headerImages = [HeaderImg, HeaderImg2];
+const headerImages = [HeaderImg, HeaderImg2, HeaderImg3];
 
 import pmp from "../apis/PerpetualMotionProtocol.json";
 
@@ -47,8 +48,8 @@ function ProjectView(props:ProjectViewProps) {
         </h3>
 
         <span className="flex flex-row gap-2 mt-5 mr-4">
-          {href && <TbWorld className="w-8 h-8" />}
-          {twitter && <TbBrandTwitter className="w-8 h-8" />}
+          {href && <a href={href} target="_blank"><TbWorld className="w-8 h-8" /></a>}
+          {twitter && <a href={`https://twitter.com/${twitter}`} target="_blank"><TbBrandTwitter className="w-8 h-8" /></a>}
           {/* {discord && <TbBrandDiscord className="w-8 h-8" />} */}
         </span>
 

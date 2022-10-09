@@ -15,7 +15,7 @@ export default function DateInput(props: DateInputProps) {
           type="date"
           name="date"
           id="date"
-          className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="block w-full rounded-md border-gray-300 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
           placeholder="mm/dd/yyyy"
           aria-describedby="date"
           value={props.date}

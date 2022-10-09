@@ -18,7 +18,7 @@ export default function PriceInput(props: PriceInputProps) {
           type="text"
           name="price"
           id="price"
-          className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
           placeholder="0.00"
           aria-describedby="price-currency"
           value={props.amount}
