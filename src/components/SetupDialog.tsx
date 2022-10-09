@@ -28,11 +28,11 @@ const savingMethodGroup = [
 
 export default function SetupDialog(props: SetupDialogProps) {
   let projectId
-  if (props.projectAddress === "0x151a64570e4997739458455ba4ab5A535FD2E306") {
-    projectId == "0"
-  } else if (props.projectAddress === "0x52DF867874Be4d01a4138165d4dB72Ec91B948e3") {
-    projectId == "1"
-  }
+    if (props.projectAddress === "0x151a64570e4997739458455ba4ab5A535FD2E306") {
+      projectId = "0"
+    } else if (props.projectAddress === "0x52DF867874Be4d01a4138165d4dB72Ec91B948e3") {
+      projectId = "1"
+    }
 
   const { address, isConnected } = useAccount()
   const [savingMethod, setSavingMethod] = useState(savingMethodGroup[0].id)
@@ -58,7 +58,8 @@ export default function SetupDialog(props: SetupDialogProps) {
     addressOrName: props.contractAddress,
     contractInterface: pmp,
     functionName: 'returnUserDonations',
-    args: [projectId, '0xed85Ab9A0D2F99d5320CD1c1aA026939f375a834'],
+    args: [projectId, "0xF5C618dD4046726a8a3B6664A19a3581C1A96fA5"],
+    // args: [projectId, address],
   })
 
   const { config } = usePrepareContractWrite({
@@ -158,7 +159,7 @@ export default function SetupDialog(props: SetupDialogProps) {
                 {!!contractRead.data && <button
                   type="submit"
                   onClick={()=>{writeReset && writeReset()}}
-                  className="flex w-full justify-center rounded-md border border-transparent bg-emerald-200 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  className="flex w-full justify-center rounded-md border border-transparent border-emerald-600 py-2 px-4 mt-4 text-sm font-medium text-emerald-600 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 "
                 >
                   Stop Scheme
                 </button>}

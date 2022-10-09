@@ -1,6 +1,7 @@
 import { Disclosure, } from '@headlessui/react'
 import ProfileHeader from './ProfileHeader'
 import { NavLink } from 'react-router-dom'
+import pmpLogo from '../assets/logo.svg'
 
 const navigation = [
   // { name: 'About', href: '/', current: true },
@@ -24,7 +25,8 @@ export default function PageFrame(props) {
                   <div className="flex">
                     <div className="flex flex-shrink-0 items-center">
                     <h1 className="font-bold">
-                      <NavLink to="/">
+                        <img src={pmpLogo} className="h-8 w-auto inline mr-3" />
+                      <NavLink to="/" className="mt-3">
                       Perpetual Motion</NavLink>
                       </h1>
                     </div>

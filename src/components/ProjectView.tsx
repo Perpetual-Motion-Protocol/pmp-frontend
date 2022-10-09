@@ -27,9 +27,6 @@ const pmpAddresses = {"mumbai":"0x6C5c9115ef9C241Bd0efBA333B873c2E790E90A9"}
 function ProjectView(props:ProjectViewProps) {
 
   const {title, details, href, twitter, sgdGoals, headerImage} = projectData[props.projectAddress]
-  console.log(props.projectAddress)
-  console.log("hello")
-
 
   return (
     <div className="max-w-7xl mb-24">
@@ -38,12 +35,12 @@ function ProjectView(props:ProjectViewProps) {
         <DonationStats projectAddress={props.projectAddress} contractAddress={pmpAddresses.mumbai}/>
         <img src={headerImages[headerImage]} />
       </div>
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-row gap-4 mt-6">
 
         <div className="flex-none max-w-2xl pr-6">
           <div className="flex flex-rows">
 
-        <h3 className="flex-1 text-2xl font-medium leading-6 text-gray-900 mb-6 mt-6">
+        <h3 className="flex-1 text-2xl font-medium leading-6 text-gray-900 mb-6 mt-4">
           Project Details
         </h3>
 
@@ -60,7 +57,7 @@ function ProjectView(props:ProjectViewProps) {
         </h3>
         <div className="flex flex-row gap-6">
           {sgdGoals.map((item:number)=>{
-            return <img src={`./images/SDG_${item}.png`} /> 
+            return <img key={item} src={`./images/SDG_${item}.png`} /> 
           })}
         </div>
         {/* <h3>Donations</h3>
