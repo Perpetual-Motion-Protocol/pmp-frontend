@@ -90,7 +90,7 @@ export default function SetupDialog(props: SetupDialogProps) {
   return (
         <div className="bg-gray-50 sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">{contractRead.data && `You donated $${userDonation.data && ethers.utils.formatEther(userDonation.data.toString()) || "0"} to this project!` || "Setup a Microdonation scheme" }</h3>
+          <h3 className="text-lg font-medium leading-6 text-gray-900">{contractRead.data && `You donated $${userDonation.data && Number.parseFloat(ethers.utils.formatEther(userDonation.data.toString())).toFixed(2) || "0.00"} to this project!` || "Setup a Microdonation scheme" }</h3>
             <RadioGroupSmall title={contractRead.data && "Would you like to update your strategy?" || "How would you like to save?"} choices={savingMethodGroup} state={savingMethod} setState={setSavingMethod} />
 
           <Transition show={scheme === "time-period"}

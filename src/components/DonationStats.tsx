@@ -26,14 +26,14 @@ export default function DonationStats(props:DonationStatsProps) {
       [projectId],
       [[
         "0xF5C618dD4046726a8a3B6664A19a3581C1A96fA5", 
-        "0x97BfE1Ac753485134B3a88AE7b0c293D37bE5a84"
+        "0x97BfE1Ac753485134B3a88AE7b0c293D37bE5a84",
        ]], 
       [
         [
           ethers.constants.HashZero,
           abiCoder.encode(
             ["bytes", "uint256"],
-            [ethers.utils.hashMessage("Hello World"), 100000]
+            [ethers.utils.hashMessage("Hello World2"), 100000]
           ),
         ],
       ]
@@ -61,10 +61,10 @@ export default function DonationStats(props:DonationStatsProps) {
 return(
         <div className="absolute right-0 top-1/4 px-12 py-8 bg-white border border-slate-400 rounded-md">
           <div className="flex flex-column items-center">
-            <span className="text-3xl">{amountRaised && ethers.utils.formatEther(amountRaised.toString()) || "0"}</span>
+            <span className="text-3xl">{amountRaised && Number.parseFloat(ethers.utils.formatEther(amountRaised.toString())).toFixed(2) || "0.00"}</span>
             <span className="ml-2"><img src={USDC} className="inline w-6 h-6" /> DONATED</span>
           </div>
-          <div className="flex flex-column items-center">{fundingGoal.data && ethers.utils.formatEther(fundingGoal.data.toString()) || "0"} Goal</div>
+          <div className="flex flex-column items-center">{fundingGoal.data && Number.parseFloat(ethers.utils.formatEther(fundingGoal.data.toString())).toFixed(2) || "0.00"} Goal</div>
           <button
                   type="submit"
                   onClick={()=>{ write && write()}}
