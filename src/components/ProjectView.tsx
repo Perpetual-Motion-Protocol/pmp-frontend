@@ -29,7 +29,7 @@ function ProjectView(props:ProjectViewProps) {
     <div className="max-w-7xl mb-24">
       <h1 className="font-normal text-5xl mb-6">{title}</h1>
       <div className="relative max-w-full">
-        <DonationStats projectAddress={props.projectAddress} />
+        <DonationStats projectAddress={props.projectAddress} contractAddress={pmpAddresses.mumbai}/>
         <img src={HeaderImg} />
       </div>
       <div className="flex flex-row gap-4">
