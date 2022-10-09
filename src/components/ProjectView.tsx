@@ -26,6 +26,8 @@ const pmpAddresses = {"mumbai":"0x6C5c9115ef9C241Bd0efBA333B873c2E790E90A9"}
 function ProjectView(props:ProjectViewProps) {
 
   const {title, details, href, twitter, sgdGoals, headerImage} = projectData[props.projectAddress]
+  console.log(props.projectAddress)
+  console.log("hello")
 
 
   return (

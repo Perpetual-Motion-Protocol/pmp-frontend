@@ -13,10 +13,11 @@ export interface DonationStatsProps  {
 export default function DonationStats(props:DonationStatsProps) {
   let projectId
     if (props.projectAddress === "0x151a64570e4997739458455ba4ab5A535FD2E306") {
-      projectId == "0"
+      projectId = "0"
     } else if (props.projectAddress === "0x52DF867874Be4d01a4138165d4dB72Ec91B948e3") {
-      projectId == "1"
+      projectId = "1"
     }
+    console.log(props.projectAddress)
   const abiCoder = new ethers.utils.AbiCoder();
   const { config } = usePrepareContractWrite({
     addressOrName: props.contractAddress,
@@ -41,6 +42,7 @@ export default function DonationStats(props:DonationStatsProps) {
   })
 
   const { write } = useContractWrite(config)
+  console.log(projectId)
 
   const amountFunded = useContractRead({
     addressOrName: props.contractAddress,
