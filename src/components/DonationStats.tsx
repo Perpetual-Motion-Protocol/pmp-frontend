@@ -43,6 +43,13 @@ export default function DonationStats(props:DonationStatsProps) {
     args: ["0"],
   })
 
+  const fundingGoal = useContractRead({
+    addressOrName: props.contractAddress,
+    contractInterface: pmp,
+    functionName: 'returnFundingGoal',
+    args: ["0"],
+  })
+
   const amountRaised = amountFunded.data;
 
 return(
@@ -51,6 +58,7 @@ return(
             <span className="text-3xl">{amountRaised && ethers.utils.formatEther(amountRaised.toString()) || "0"}</span>
             <span className="ml-2"><img src={USDC} className="inline w-6 h-6" /> DONATED</span>
           </div>
+          <div className="flex flex-column items-center">{fundingGoal.data && ethers.utils.formatEther(fundingGoal.data.toString()) || "0"} Goal</div>
           <button
                   type="submit"
                   onClick={()=>{ write && write()}}
