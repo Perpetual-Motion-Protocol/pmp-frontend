@@ -1,15 +1,14 @@
-import SetupDialog from "../components/SetupDialog"
+import ProjectView from "../components/ProjectView"
+
 
 function Donate() {
 
   return (
-    <h1>
-    This is the donate page.
+    <div>
+      Preview for a specific address
+    <ProjectView projectAddress="0x151a64570e4997739458455ba4ab5A535FD2E306" />
 
-    This is a preview of the donate form.
-    <SetupDialog projectAddress="" />
-
-    </h1>
+    </div>
   )
 }
 
