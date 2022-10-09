@@ -4,18 +4,20 @@ import Toggle from "./Toggle"
 import { Transition } from '@headlessui/react'
 import PriceInput from "./PriceInput"
 import DateInput from "./DateInput"
-import { usePrepareContractWrite, useContractWrite } from 'wagmi'
+import { usePrepareContractWrite, useContractWrite, useAccount, useContractRead } from 'wagmi'
 import pmp from "../apis/PerpetualMotionProtocol.json";
 import {ethers, utils} from "ethers"
 import ScheduleInput from "./ScheduleInput"
-import { useAccount } from 'wagmi'
-import { useContractRead } from 'wagmi'
 
 const abiCoder = new utils.AbiCoder()
 
 export interface SetupDialogProps  {
   projectAddress: string
   contractAddress: string
+}
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
 }
 
 const savingMethodGroup = [
@@ -25,7 +27,10 @@ const savingMethodGroup = [
 ]
 
 export default function SetupDialog(props: SetupDialogProps) {
-  const { address } = useAccount()
+
+  const donatedAmount = "500.00";
+
+  const { address, isConnected } = useAccount()
   const [savingMethod, setSavingMethod] = useState(savingMethodGroup[0].id)
 
   // Vars to be implemented in the future
@@ -63,7 +68,7 @@ export default function SetupDialog(props: SetupDialogProps) {
   return (
         <div className="bg-gray-50 sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">{contractRead.data && "You are already pledged to this project" || "Setup a Microdonation scheme" }</h3>
+          <h3 className="text-lg font-medium leading-6 text-gray-900">{contractRead.data && `You already donated $${donatedAmount} to this project!` || "Setup a Microdonation scheme" }</h3>
             <RadioGroupSmall title={contractRead.data && "Would you like to update your strategy?" || "How would you like to save?"} choices={savingMethodGroup} state={savingMethod} setState={setSavingMethod} />
 
           <Transition show={scheme === "time-period"}
@@ -115,16 +120,21 @@ export default function SetupDialog(props: SetupDialogProps) {
               <PriceInput title='Maximum Amount' amount={capAmount} setAmount={setCapAmount} />
             </Transition>
           
-          <div className="mt-5">
+          <div className="mt-12 mb-6">
           <button
                   type="submit"
                   onClick={()=>{ write && write()}}
-                  className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+
+                                  className={classNames(
+                                    isConnected ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-slate-200',
+                                    "flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                  )}
+                  disabled={!isConnected}
                 >
-                  {contractRead.data && "Update Scheme" || "Create Scheme"}
+                  {contractRead.data ? "Update Scheme" : isConnected ? "Create Scheme" : "Login to Create a Scheme"}
                 </button>
 
-                {contractRead.data && <button
+                {!!contractRead.data && <button
                   type="submit"
                   onClick={()=>{ usePrepareContractWrite({
                     addressOrName: props.contractAddress,

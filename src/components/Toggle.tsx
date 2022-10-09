@@ -17,7 +17,7 @@ export default function Toggle(props: ToggleProps) {
   const {enabled, setEnabled} = props;
 
   return (
-    <Switch.Group as="div" className="flex items-center justify-between">
+    <Switch.Group as="div" className="flex items-center justify-between mt-6 mb-4">
       <span className="flex flex-grow flex-col">
         <Switch.Label as="span" className="text-sm font-medium text-gray-900" passive>
           {props.title}

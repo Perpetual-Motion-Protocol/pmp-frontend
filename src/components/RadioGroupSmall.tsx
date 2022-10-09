@@ -17,17 +17,17 @@ export default function RadioGroupSmall(props:RadioGroupProps) {
   const {state, setState} = props
 
   return (
-    <div>
-      <div className="flex items-center justify-between">
+    <div className="mb-4">
+      <div className="flex items-center justify-between mt-6">
         <h2 className="text-sm font-medium text-gray-900">{props.title}</h2>
-        <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+        {/* <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
           ?
-        </a>
+        </a> */}
       </div>
 
-      <RadioGroup value={state} onChange={setState} className="mt-2">
+      <RadioGroup value={state} onChange={setState} className="mt-3">
         <RadioGroup.Label className="sr-only"> Choose an option </RadioGroup.Label>
-        <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+        <div className="flex gap-3 w-full">
           {props.choices.map((option) => (
             <RadioGroup.Option
               key={option.name}
