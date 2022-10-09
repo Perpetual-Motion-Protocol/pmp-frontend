@@ -5,6 +5,9 @@ import projectData from "../data/projects.json"
 import { TbBrandDiscord, TbBrandTwitter, TbWorld } from "react-icons/tb";
 
 import HeaderImg from '../assets/images/headerSample.png'
+import HeaderImg2 from '../assets/images/headerSample2.png'
+
+const headerImages = [HeaderImg, HeaderImg2];
 
 import pmp from "../apis/PerpetualMotionProtocol.json";
 
@@ -22,7 +25,7 @@ const pmpAddresses = {"mumbai":"0x6C5c9115ef9C241Bd0efBA333B873c2E790E90A9"}
 
 function ProjectView(props:ProjectViewProps) {
 
-  const {title, details, href, totalDonated, donors, twitter, sgdGoals, headerImage} = projectData["0x151a64570e4997739458455ba4ab5A535FD2E306"]
+  const {title, details, href, twitter, sgdGoals, headerImage} = projectData["0x151a64570e4997739458455ba4ab5A535FD2E306"]
 
 
   return (

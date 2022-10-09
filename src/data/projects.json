@@ -6,7 +6,7 @@
     "href": "https://kokodao.xyz/",
     "twitter": "kokodaoxyz",
     "sgdGoals": [5, 8, 13, 15, 16],
-    "headerImage": "headerSample2.png"
+    "headerImage": 0
   },
   "0xanother":{
     "title": "CoffeeCarbonCo",
@@ -14,7 +14,7 @@
     "details": "CCC provides a web3 ecosystem to support coffee farmers in transitioning to agroforestry by providing tools for pre-financing and tools for direct trade with climate-conscious coffee buyers. CCC quantifies future carbon savings and mints a geo-spatial NFT that keeps the track of regeneration of the farm. Farmer requests pre-financing of transition by issuing carbon credit tokens that are connected to geospatial NFTs using CCC infrastructure and fundraising directly from the climate-conscious buyers. CCC guides the farmer through transition and keeps the track of activities, verifies practices and results through dMRV. CCC provides another set of contracts for the direct coffee trade to open market access for \"regenerated coffee\".",
     "twitter": "CoffeeCarbonCo",
     "sgdGoals": [13,15,16],
-    "headerImage": "headerSample1.png"
+    "headerImage": 1
   },
   "0xthird":{
     "title": "Earth Regenerators",
@@ -23,6 +23,6 @@
     "href": "https://www.regeneratebarichara.org/",
     "twitter": "cognitivepolicy",
     "sgdGoals": [],
-    "headerImage": "headerSample.png"
+    "headerImage": 0
   }
 }
