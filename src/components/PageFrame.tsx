@@ -3,7 +3,7 @@ import ProfileHeader from './ProfileHeader'
 import { NavLink } from 'react-router-dom'
 
 const navigation = [
-  { name: 'About', href: '/', current: true },
+  // { name: 'About', href: '/', current: true },
   { name: 'Donate', href: '/donate', current: false },
 ]
 
@@ -22,18 +22,13 @@ export default function PageFrame(props) {
                 <div className="flex h-16 justify-between">
                   <div className="flex">
                     <div className="flex flex-shrink-0 items-center">
-                      <img
-                        className="block h-8 w-auto lg:hidden"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="Your Company"
-                      />
-                      <img
-                        className="hidden h-8 w-auto lg:block"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="Your Company"
-                      />
+                    <h1 className="font-bold">
+                      <NavLink to="/">
+                      Perpetual Motion Protocol
+                      </NavLink>
+                      </h1>
                     </div>
-                    <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                    <div className="sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                       {navigation.map((item) => (
                         <NavLink
                           key={item.name}
@@ -52,7 +47,7 @@ export default function PageFrame(props) {
                       ))}
                     </div>
                   </div>
-                  <div className="hidden sm:ml-6 sm:flex sm:items-center">
+                  <div className="sm:ml-6 sm:flex sm:items-center">
                     {/* <button
                       type="button"
                       className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

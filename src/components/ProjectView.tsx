@@ -1,5 +1,10 @@
 import SetupDialog from "./SetupDialog"
 import Donations from "./Donations"
+import DonationStats from "./DonationStats"
+import projectData from "../data/projects.json"
+import { TbBrandDiscord, TbBrandTwitter, TbWorld } from "react-icons/tb";
+
+import HeaderImg from '../assets/images/headerSample.png'
 
 import pmp from "../apis/PerpetualMotionProtocol.json";
 
@@ -14,36 +19,52 @@ export interface ProjectViewProps  {
 // depending on chain, get deployment contract address
 const pmpAddresses = {"mumbai":"0x6C5c9115ef9C241Bd0efBA333B873c2E790E90A9"}
 
-const sampleData = {
-  "0x151a64570e4997739458455ba4ab5A535FD2E306":{
-    title: "Super Regen Forest Quest",
-    details: "This is a long explaination of the project. This is a long explaination of the project. This is a long explaination of the project. This is a long explaination of the project. This is a long explaination of the project. This is a long explaination of the project.",
-    href: "",
-    totalDonated: 23656.07,
-    donors: 54,
-    discord: "discordHandle",
-    twitter: "twitterHandle",
-    sgdGoals: [16,8,13],
-    headerImage: ""
-  }}
-const title = "Super Regen Forest Quest"
-const totalDonated = ""
 
 function ProjectView(props:ProjectViewProps) {
 
-  const {title, details, href, totalDonated, donors, discord, twitter, sgdGoals, headerImage} = sampleData["0x151a64570e4997739458455ba4ab5A535FD2E306"]
+  const {title, details, href, totalDonated, donors, discord, twitter, sgdGoals, headerImage} = projectData["0x151a64570e4997739458455ba4ab5A535FD2E306"]
 
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <h3>Project Details</h3>
-      <p>{details}</p>
-      <h3>SDG Goals</h3>
-      FOR EACH LOOP
-      <h3>Donations</h3>
-      <Donations />
-    <SetupDialog projectAddress={props.projectAddress} contractAddress={pmpAddresses.mumbai} />
+    <div className="max-w-7xl mb-24">
+      <h1 className="font-normal text-5xl mb-6">{title}</h1>
+      <div className="relative max-w-full">
+        <DonationStats projectAddress={props.projectAddress} />
+        <img src={HeaderImg} />
+      </div>
+      <div className="flex flex-row gap-4">
+
+        <div className="flex-none max-w-2xl pr-6">
+          <div className="flex flex-rows">
+
+        <h3 className="flex-1 text-2xl font-medium leading-6 text-gray-900 mb-6 mt-6">
+          Project Details
+        </h3>
+
+        <span className="flex flex-row gap-2 mt-5 mr-4">
+          {href && <TbWorld className="w-8 h-8" />}
+          {twitter && <TbBrandTwitter className="w-8 h-8" />}
+          {discord && <TbBrandDiscord className="w-8 h-8" />}
+        </span>
+
+          </div>
+        <p>{details}</p>
+        <h3 className="text-2xl font-medium leading-6 text-gray-900 mb-6 mt-10">
+          SDG Goals
+        </h3>
+        <div className="flex flex-row gap-6">
+          {sgdGoals.map((item:number)=>{
+            return <img src={`./images/SDG_${item}.png`} /> 
+          })}
+        </div>
+        {/* <h3>Donations</h3>
+        <Donations /> */}
+        </div>
+
+<div className="flex-1 h-72">
+        <SetupDialog projectAddress={props.projectAddress} contractAddress={pmpAddresses.mumbai} />
+</div>
+      </div>
 
     </div>
   )
