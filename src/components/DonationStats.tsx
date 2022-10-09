@@ -15,7 +15,7 @@ return(
             <span className="text-3xl">{amountRaised}</span>
             <span className="ml-2"><img src={USDC} className="inline w-6 h-6" />USDC</span>
           </div>
-          <div>Donated by {donorNumbers} wallet{donorNumbers === 1 && s}</div>
+          <div>Donated by {donorNumbers} wallets</div>
         </div>
 )
 

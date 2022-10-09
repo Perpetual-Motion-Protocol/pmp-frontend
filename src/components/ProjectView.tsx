@@ -22,7 +22,7 @@ const pmpAddresses = {"mumbai":"0x6C5c9115ef9C241Bd0efBA333B873c2E790E90A9"}
 
 function ProjectView(props:ProjectViewProps) {
 
-  const {title, details, href, totalDonated, donors, discord, twitter, sgdGoals, headerImage} = projectData["0x151a64570e4997739458455ba4ab5A535FD2E306"]
+  const {title, details, href, totalDonated, donors, twitter, sgdGoals, headerImage} = projectData["0x151a64570e4997739458455ba4ab5A535FD2E306"]
 
 
   return (
@@ -44,7 +44,7 @@ function ProjectView(props:ProjectViewProps) {
         <span className="flex flex-row gap-2 mt-5 mr-4">
           {href && <TbWorld className="w-8 h-8" />}
           {twitter && <TbBrandTwitter className="w-8 h-8" />}
-          {discord && <TbBrandDiscord className="w-8 h-8" />}
+          {/* {discord && <TbBrandDiscord className="w-8 h-8" />} */}
         </span>
 
           </div>
