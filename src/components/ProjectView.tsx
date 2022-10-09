@@ -21,7 +21,7 @@ export interface ProjectViewProps  {
 }
 
 // depending on chain, get deployment contract address
-const pmpAddresses = {"mumbai":"0x6C5c9115ef9C241Bd0efBA333B873c2E790E90A9"}
+const pmpAddresses = {"mumbai":"0x62b1C9ea7E6EAC66Ee9C3bcD93aBBa86649EF66e"}
 
 
 function ProjectView(props:ProjectViewProps) {
