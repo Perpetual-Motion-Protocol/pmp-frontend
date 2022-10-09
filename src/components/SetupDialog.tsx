@@ -6,7 +6,10 @@ import PriceInput from "./PriceInput"
 import DateInput from "./DateInput"
 import { usePrepareContractWrite, useContractWrite } from 'wagmi'
 import pmp from "../apis/PerpetualMotionProtocol.json";
-import {utils} from "ethers"
+import {ethers, utils} from "ethers"
+import ScheduleInput from "./ScheduleInput"
+import { useAccount } from 'wagmi'
+import { useContractRead } from 'wagmi'
 
 const abiCoder = new utils.AbiCoder()
 
@@ -15,50 +18,54 @@ export interface SetupDialogProps  {
   contractAddress: string
 }
 
-const timeframeGroup = [
-  {name:"Perpetual", id:'perpetual'},
-  // {name:"Time period", id:'time-period'},
-  {name:"Reoccuring", id:"reoccurring"},
-]
-
 const savingMethodGroup = [
-  {name:"Round Up", id:'roundup'},
+  {name:"Round Up", id:'roundup', strategy:"3"},
   // {name:"Set a %", id:'set-percent'},
-  {name:"Fixed Amount", id:"fixed-amount"},
+  {name:"Fixed Amount", id:"fixed-amount", strategy:"2"},
 ]
 
 export default function SetupDialog(props: SetupDialogProps) {
-  const [scheme, setScheme] = useState(timeframeGroup[0].id)
+  const { address } = useAccount()
   const [savingMethod, setSavingMethod] = useState(savingMethodGroup[0].id)
+
+  // Vars to be implemented in the future
   const [endDate, setEndDate] = useState('');
   const [capEnabled, setCapEnabled] = useState(false);
 
-  const [oneShotAmount, setOneShotAmount] = useState('');
+  // Params to build strategy
   const [capAmount, setCapAmount] = useState('');
-  const [fixedAmount, setFixedAmount] = useState('');
+  const [scheme, setScheme] = useState('');
+  const [fixedAmount, setFixedAmount] = useState('0');
+  const [schedule, setSchedule] = useState('');
+  const [projectId, setProjectId] = useState("0");
 
-
-  const {projectId, strategy, contributionDetails} = { projectId: parseInt("0"), strategy: parseInt("2"), contributionDetails: abiCoder.encode(["uint256", "uint256"],[100000, 100] )}
-
-  // const debouncedTokenId = useDebounce(tokenId, 500)
+  const contractRead = useContractRead({
+    addressOrName: props.contractAddress,
+    contractInterface: pmp,
+    functionName: 'returnUserStrategy',
+    args: ["0", address],
+  })
 
   const { config } = usePrepareContractWrite({
     addressOrName: props.contractAddress,
     contractInterface: pmp,
     functionName: 'pledge',
-    args: [projectId, strategy, contributionDetails],
+    args: [
+      projectId, 
+      savingMethod == savingMethodGroup[0].id ? "3" : "2", 
+      abiCoder.encode(["uint256", "uint256"],[fixedAmount, 10] )
+    ],
   })
 
   const { write } = useContractWrite(config)
+  
 
   return (
         <div className="bg-gray-50 sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">Setup a Microdonation scheme</h3>
-            <RadioGroupSmall title="How would you like to save?" choices={savingMethodGroup} state={savingMethod} setState={setSavingMethod} />
-          <RadioGroupSmall title="Timeframe for donation" choices={timeframeGroup} state={scheme} setState={setScheme} />
+          <h3 className="text-lg font-medium leading-6 text-gray-900">{contractRead.data && "You are already pledged to this project" || "Setup a Microdonation scheme" }</h3>
+            <RadioGroupSmall title={contractRead.data && "Would you like to update your strategy?" || "How would you like to save?"} choices={savingMethodGroup} state={savingMethod} setState={setSavingMethod} />
 
-{/* If time-period */}
           <Transition show={scheme === "time-period"}
               enter="transition-height transition-opacity"
               enterFrom="h-0 hidden"
@@ -68,42 +75,23 @@ export default function SetupDialog(props: SetupDialogProps) {
               leaveTo="h-0 hidden"
           
           >
-<DateInput title="Select an end date" date={endDate} setDate={setEndDate} />
+          <DateInput title="Select an end date" date={endDate} setDate={setEndDate} />
             </Transition>
 
-{/* If one-shot */}
-          {/* <Transition show={scheme === "one-shot"}
-              enter="transition-height transition-opacity"
-              enterFrom="h-0 hidden"
-              enterTo="h-fit"
-              leave="transition-height duration-75"
-              leaveFrom="h-fit"
-              leaveTo="h-0 hidden"
-          
-          >
-              <PriceInput title='Amount' amount={oneShotAmount} setAmount={setOneShotAmount} />
-
-            </Transition> */}
-
-{/* if not one-shot */}
-          {/* <Transition show={scheme != "one-shot"}
-              // enter="transition-opacity duration-75"
-              // enterFrom="opacity-0"
-              // enterTo="opacity-100"
-              // leave="transition-opacity duration-150"
-              // leaveFrom="opacity-100"
-              // leaveTo="opacity-0"
-              enter="transition-height transition-opacity"
-              enterFrom="h-0 hidden"
-              enterTo="h-fit"
-              leave="transition-height duration-75"
-              leaveFrom="h-fit"
-              leaveTo="h-0 hidden"
-          
-          > */}
+            <Transition
+              show={(savingMethod == 'fixed-amount')}
+              enter="transition-opacity duration-75"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity duration-150"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <ScheduleInput title='Donation Schedule' time={schedule} setSchedule={setSchedule} />
+            </Transition>
 
             <Transition
-              show={(scheme == 'reoccurring')}
+              show={(savingMethod == 'fixed-amount')}
               enter="transition-opacity duration-75"
               enterFrom="opacity-0"
               enterTo="opacity-100"
@@ -126,7 +114,6 @@ export default function SetupDialog(props: SetupDialogProps) {
             >
               <PriceInput title='Maximum Amount' amount={capAmount} setAmount={setCapAmount} />
             </Transition>
-          {/* </Transition> */}
           
           <div className="mt-5">
           <button
@@ -134,8 +121,25 @@ export default function SetupDialog(props: SetupDialogProps) {
                   onClick={()=>{ write && write()}}
                   className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  Create Scheme
+                  {contractRead.data && "Update Scheme" || "Create Scheme"}
                 </button>
+
+                {contractRead.data && <button
+                  type="submit"
+                  onClick={()=>{ usePrepareContractWrite({
+                    addressOrName: props.contractAddress,
+                    contractInterface: pmp,
+                    functionName: 'pledge',
+                    args: [
+                      projectId, 
+                      "0", 
+                      abiCoder.encode(["uint256", "uint256"],[fixedAmount, 10] )
+                    ],
+                  })}}
+                  className="flex w-full justify-center rounded-md border border-transparent bg-indigo-200 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  Stop Scheme
+                </button>}
           </div>
         </div>
       </div>
