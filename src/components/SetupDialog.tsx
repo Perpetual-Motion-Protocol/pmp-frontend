@@ -27,8 +27,12 @@ const savingMethodGroup = [
 ]
 
 export default function SetupDialog(props: SetupDialogProps) {
-
-  const donatedAmount = "500.00";
+  let projectId
+  if (props.projectAddress === "0x151a64570e4997739458455ba4ab5A535FD2E306") {
+    projectId == "0"
+  } else if (props.projectAddress === "0x52DF867874Be4d01a4138165d4dB72Ec91B948e3") {
+    projectId == "1"
+  }
 
   const { address, isConnected } = useAccount()
   const [savingMethod, setSavingMethod] = useState(savingMethodGroup[0].id)
@@ -42,13 +46,19 @@ export default function SetupDialog(props: SetupDialogProps) {
   const [scheme, setScheme] = useState('');
   const [fixedAmount, setFixedAmount] = useState('0');
   const [schedule, setSchedule] = useState('');
-  const [projectId, setProjectId] = useState("0");
 
   const contractRead = useContractRead({
     addressOrName: props.contractAddress,
     contractInterface: pmp,
     functionName: 'returnUserStrategy',
-    args: ["0", address],
+    args: [projectId, address],
+  })
+
+  const userDonation = useContractRead({
+    addressOrName: props.contractAddress,
+    contractInterface: pmp,
+    functionName: 'returnUserDonations',
+    args: [projectId, '0xed85Ab9A0D2F99d5320CD1c1aA026939f375a834'],
   })
 
   const { config } = usePrepareContractWrite({
@@ -62,13 +72,24 @@ export default function SetupDialog(props: SetupDialogProps) {
     ],
   })
 
-  const { write } = useContractWrite(config)
-  
+  const { config: configReset } = usePrepareContractWrite({
+    addressOrName: props.contractAddress,
+    contractInterface: pmp,
+    functionName: 'pledge',
+    args: [
+      projectId, 
+      "0",
+      abiCoder.encode(["uint256", "uint256"],[fixedAmount, 10] )
+    ],
+  })
+
+  const { write } = useContractWrite(config)  
+  const { write: writeReset } = useContractWrite(configReset)  
 
   return (
         <div className="bg-gray-50 sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">{contractRead.data && `You already donated $${donatedAmount} to this project!` || "Setup a Microdonation scheme" }</h3>
+          <h3 className="text-lg font-medium leading-6 text-gray-900">{contractRead.data && `You donated $${userDonation.data && ethers.utils.formatEther(userDonation.data.toString()) || "0"} to this project!` || "Setup a Microdonation scheme" }</h3>
             <RadioGroupSmall title={contractRead.data && "Would you like to update your strategy?" || "How would you like to save?"} choices={savingMethodGroup} state={savingMethod} setState={setSavingMethod} />
 
           <Transition show={scheme === "time-period"}
@@ -92,7 +113,7 @@ export default function SetupDialog(props: SetupDialogProps) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <ScheduleInput title='Donation Schedule' time={schedule} setSchedule={setSchedule} />
+              <ScheduleInput title='Donation Schedule' time={schedule} setSchedule={(setSchedule)} />
             </Transition>
 
             <Transition
@@ -136,16 +157,7 @@ export default function SetupDialog(props: SetupDialogProps) {
 
                 {!!contractRead.data && <button
                   type="submit"
-                  onClick={()=>{ usePrepareContractWrite({
-                    addressOrName: props.contractAddress,
-                    contractInterface: pmp,
-                    functionName: 'pledge',
-                    args: [
-                      projectId, 
-                      "0", 
-                      abiCoder.encode(["uint256", "uint256"],[fixedAmount, 10] )
-                    ],
-                  })}}
+                  onClick={()=>{writeReset && writeReset()}}
                   className="flex w-full justify-center rounded-md border border-transparent bg-indigo-200 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   Stop Scheme

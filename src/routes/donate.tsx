@@ -6,7 +6,7 @@ function Donate() {
 
   return (
     <div>
-    <ProjectView projectAddress={projectAddress} />
+    {projectAddress && <ProjectView projectAddress={projectAddress} />}
     </div>
   )
 }
