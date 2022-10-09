@@ -3,6 +3,7 @@ import { useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import { useContractRead } from 'wagmi'
 import pmp from "../apis/PerpetualMotionProtocol.json";
 import { ethers } from 'ethers';
+import { TbHandRock } from "react-icons/tb";
 
 export interface DonationStatsProps  {
   projectAddress: string
@@ -50,15 +51,17 @@ return(
             <span className="text-3xl">{amountRaised && ethers.utils.formatEther(amountRaised.toString()) || "0"}</span>
             <span className="ml-2"><img src={USDC} className="inline w-6 h-6" /> DONATED</span>
           </div>
-          <div className="flex flex-column items-center">
           <button
                   type="submit"
                   onClick={()=>{ write && write()}}
-                  className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="mt-4 flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  Accumlate Donations
+                  {/* Accumlate Donations */}
+                  <TbHandRock className="w-10 h-auto" />
+
                 </button>
-          </div>
+          {/* <div className="flex flex-column items-center"> */}
+          {/* </div> */}
         </div>
 )
 
