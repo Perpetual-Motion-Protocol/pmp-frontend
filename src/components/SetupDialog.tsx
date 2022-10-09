@@ -27,6 +27,12 @@ const savingMethodGroup = [
 ]
 
 export default function SetupDialog(props: SetupDialogProps) {
+  let projectId
+  if (props.projectAddress === "0x151a64570e4997739458455ba4ab5A535FD2E306") {
+    projectId == "0"
+  } else if (props.projectAddress === "0x52DF867874Be4d01a4138165d4dB72Ec91B948e3") {
+    projectId == "1"
+  }
 
   const { address, isConnected } = useAccount()
   const [savingMethod, setSavingMethod] = useState(savingMethodGroup[0].id)
@@ -40,20 +46,19 @@ export default function SetupDialog(props: SetupDialogProps) {
   const [scheme, setScheme] = useState('');
   const [fixedAmount, setFixedAmount] = useState('0');
   const [schedule, setSchedule] = useState('');
-  const [projectId, setProjectId] = useState("0");
 
   const contractRead = useContractRead({
     addressOrName: props.contractAddress,
     contractInterface: pmp,
     functionName: 'returnUserStrategy',
-    args: ["0", address],
+    args: [projectId, address],
   })
 
   const userDonation = useContractRead({
     addressOrName: props.contractAddress,
     contractInterface: pmp,
     functionName: 'returnUserDonations',
-    args: ["0", '0xed85Ab9A0D2F99d5320CD1c1aA026939f375a834'],
+    args: [projectId, '0xed85Ab9A0D2F99d5320CD1c1aA026939f375a834'],
   })
 
   const { config } = usePrepareContractWrite({

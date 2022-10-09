@@ -16,7 +16,7 @@ import {utils} from "ethers"
 const abiCoder = new utils.AbiCoder()
 
 export interface ProjectViewProps  {
-  projectAddress: string
+  projectAddress: string 
 }
 
 // depending on chain, get deployment contract address
